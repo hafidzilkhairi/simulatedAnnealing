@@ -12,4 +12,3 @@ def hasilOperasi(x,y):
 def hasilRandom():
     return (-10 + 20 * random.uniform(0,1))
 
-print(hasilRandom())
