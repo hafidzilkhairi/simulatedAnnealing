@@ -13,29 +13,30 @@ def hasilOperasi(x,y):
 def hasilRandom():
     return (-10 + 20 * random.uniform(0,1))
 
+def swap(x,y):
+    return x,y
+
+def tampil(a,b,c):
+    print("(", a, ",", b, ")", c)
 
 def start():
-    T = 1000000
-    x = hasilRandom()
-    y = hasilRandom()
+    T = 1000
+    x,y = swap(hasilRandom(),hasilRandom())
     solusi = hasilOperasi(x, y)
-    T = 1000000
+    
     while(T>1):
-        xNew = hasilRandom()
-        yNew = hasilRandom()
+        xNew, yNew = swap(hasilRandom(),hasilRandom())
         solusiNew = hasilOperasi(xNew, yNew)
         delta = solusiNew - solusi
         if(delta < 0):
-            x = xNew
-            y = yNew
+            x,y = swap(xNew,yNew)
             solusi = solusiNew
-            print("Masuk if")
         elif ((math.exp(-delta/T) > (random.uniform(0, 1)))):
             x = xNew
             y = yNew
-            solusi = solusiNew
-            T = 0.6 * T
-            print("Masuk else")
-    print(solusi)
+            if(solusi>solusiNew):
+                solusi = solusiNew
+            T = 0.85 * T
+    tampil(x,y,solusi)
 
 start()
